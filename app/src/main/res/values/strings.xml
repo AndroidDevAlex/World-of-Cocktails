@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">World of Cocktails</string>
+    <string name="check_your_internet_connection">Check your Internet connection.</string>
+    <string name="server_issues_please_try_again_later">Server issues. Please try again later.</string>
+    <string name="an_unknown_error_occurred">An unknown error occurred.</string>
+    <string name="field_is_empty">Field is Empty.</string>
+    <string name="load_error">Error during loading</string>
+    <string name="update_error">Error during updating</string>
+    <string name="try_again">Try again</string>
+    <string name="an_error_occurred">An error occurred</string>
+    <string name="no_saved_cocktails_found">No saved cocktails found</string>
+    <string name="cocktail_saved">Cocktail Saved</string>
+    <string name="cocktail_already_saved">Cocktail already Saved</string>
+     <string name="server_error_please_try_again_later">Server error. Please try again later.</string>
+    <string name="the_cocktail_was_not_found_please_try_again">The cocktail was not found, please try again</string>
+    <string name="no_cocktail_found">No cocktail found</string>
+    <string name="empty_search_field_message">Field is empty</string>
+
 </resources>
