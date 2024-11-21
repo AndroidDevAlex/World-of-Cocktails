@@ -1,20 +1,20 @@
 package com.example.worldofcocktails.domain.useCases.detailCase
 
-import com.example.worldofcocktails.data.repository.DetailRepository
+import com.example.worldofcocktails.data.repository.CocktailManagerRepository
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.util.Request
 import com.example.worldofcocktails.util.toRequest
 import javax.inject.Inject
 
 class GetCocktailDetailUseCase @Inject constructor(
-    private val detailRepository: DetailRepository
+    private val repository: CocktailManagerRepository
 ) {
 
-    suspend fun getCocktailsFromApi(id: String): Request<CocktailEntity> {
-        return detailRepository.getFullCocktailDetailFromApi(id).toRequest()
+    suspend fun getCocktailFromApi(id: String): Request<CocktailEntity> {
+        return repository.getFullCocktailDetailFromApi(id).toRequest()
     }
 
     suspend fun getCocktailFromDB(id: String): CocktailEntity {
-        return detailRepository.getFullCocktailDetailFromDB(id)
+        return repository.getFullCocktailDetailFromDB(id)
     }
 }

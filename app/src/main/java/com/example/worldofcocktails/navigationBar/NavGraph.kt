@@ -34,17 +34,11 @@ fun NavGraph(
         composable(
             route = "cocktail/{id}?fromLibrary={fromLibrary}",
             arguments = listOf(
+                navArgument("id") { type = NavType.StringType },
                 navArgument("fromLibrary") { type = NavType.BoolType }
             )
-        ) { backStackEntry ->
-            val cocktailId = backStackEntry.arguments?.getString("id") ?: return@composable
-            val fromLibrary = backStackEntry.arguments?.getBoolean("fromLibrary") ?: false
-
-            DetailScreen(
-                cocktailId = cocktailId,
-                fromLibrary = fromLibrary,
-                goToBack = { navHostController.popBackStack() }
-            )
+        ) {
+            DetailScreen(goToBack = { navHostController.popBackStack() })
         }
     }
 }

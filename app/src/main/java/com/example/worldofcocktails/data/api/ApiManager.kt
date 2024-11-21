@@ -42,7 +42,7 @@ class ApiManager(
         }
     }
 
-    suspend fun getFullCocktailDetailById(id: String): Resource<CocktailEntity> {
+    suspend fun getCocktailDetail(id: String): Resource<CocktailEntity> {
         return try {
             val response = cocktailApiService.getFullCocktailDetail(id)
             val cocktail = response.drinks.firstOrNull()

@@ -14,7 +14,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -43,27 +42,17 @@ import com.example.worldofcocktails.util.TopBarCustom
 
 @Composable
 fun DetailScreen(
-    cocktailId: String,
-    goToBack: () -> Unit,
-    fromLibrary: Boolean,
+    goToBack: () -> Unit
 ) {
     val viewModel = hiltViewModel<DetailViewModel>()
     val screenState by viewModel.screenState.collectAsState()
     val context = LocalContext.current
 
-    LaunchedEffect(cocktailId) {
-        if (fromLibrary) {
-            viewModel.loadCocktailDetailFromDb(cocktailId)
-        } else {
-            viewModel.loadCocktailDetailFromServer(cocktailId)
-        }
-    }
-
     DetailScreenUi(
         screenState,
         context = context,
         onBackClick = { goToBack() },
-        repeatRequest = { viewModel.loadCocktailDetailFromServer(cocktailId) }
+        repeatRequest = { viewModel.loadCocktailDetail() }
     )
 }
 
@@ -86,7 +75,7 @@ fun DetailScreenUi(
                         CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                     }
 
-                        is StateUI.Success -> {
+                    is StateUI.Success -> {
                         val cocktail = screenState.data
                         val scrollState = rememberScrollState()
                         Column(
@@ -102,7 +91,7 @@ fun DetailScreenUi(
                                     fontWeight = FontWeight.Bold
                                 ),
                                 modifier = Modifier
-                                    .fillMaxWidth() 
+                                    .fillMaxWidth()
                                     .padding(bottom = Dimens.paddingTextBottom),
                                 textAlign = TextAlign.Center
                             )
@@ -206,7 +195,8 @@ fun DetailScreenUi(
                             }
                         }
                     }
-                        is StateUI.Error -> {
+
+                    is StateUI.Error -> {
                         ErrorMessage(
                             throwable = screenState.exception,
                             context = context,

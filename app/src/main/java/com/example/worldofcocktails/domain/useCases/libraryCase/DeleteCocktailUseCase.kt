@@ -1,12 +1,12 @@
 package com.example.worldofcocktails.domain.useCases.libraryCase
 
-import com.example.worldofcocktails.data.repository.LibraryRepository
+import com.example.worldofcocktails.data.repository.CocktailManagerRepository
 import javax.inject.Inject
 
 class DeleteCocktailUseCase @Inject constructor(
-    private val libraryRepository: LibraryRepository
+    private val repository: CocktailManagerRepository
 ) {
     suspend fun deleteCocktail(id: String) {
-        libraryRepository.deleteCocktail(id)
+        repository.deleteCocktail(id)
     }
 }

@@ -1,14 +1,9 @@
 package com.example.worldofcocktails.modules
 
-import com.example.database.local.CocktailDetailDao
-import com.example.database.local.CocktailsDao
+import com.example.database.local.CocktailLocalDataSource
 import com.example.worldofcocktails.data.api.ApiManager
-import com.example.worldofcocktails.data.repository.DetailRepository
-import com.example.worldofcocktails.data.repository.DetailRepositoryImpl
-import com.example.worldofcocktails.data.repository.HomeRepository
-import com.example.worldofcocktails.data.repository.HomeRepositoryImpl
-import com.example.worldofcocktails.data.repository.LibraryRepository
-import com.example.worldofcocktails.data.repository.LibraryRepositoryImpl
+import com.example.worldofcocktails.data.repository.CocktailManagerRepository
+import com.example.worldofcocktails.data.repository.CocktailManagerRepositoryImpl
 import com.example.worldofcocktails.domain.useCases.detailCase.GetCocktailDetailUseCase
 import com.example.worldofcocktails.domain.useCases.homeCase.GetCocktailByNameUseCase
 import com.example.worldofcocktails.domain.useCases.homeCase.GetCocktailsByApiUseCase
@@ -27,56 +22,44 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideHomeRepository(apiManager: ApiManager, cocktailsDao: CocktailsDao, cocktailDetailDao: CocktailDetailDao ): HomeRepository {
-        return HomeRepositoryImpl(apiManager, cocktailsDao, cocktailDetailDao)
+    fun provideCocktailManagerRepository(apiManager: ApiManager, localDataSource: CocktailLocalDataSource): CocktailManagerRepository {
+        return CocktailManagerRepositoryImpl(apiManager, localDataSource)
     }
 
     @Provides
     @Singleton
-    fun provideLibraryRepository(cocktailsDao: CocktailsDao): LibraryRepository {
-        return LibraryRepositoryImpl(cocktailsDao)
+    fun provideGetCocktailsByApiUseCase(repository: CocktailManagerRepository): GetCocktailsByApiUseCase {
+        return GetCocktailsByApiUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun provideDetailRepository(apiManager: ApiManager, cocktailDetailDao: CocktailDetailDao): DetailRepository {
-        return DetailRepositoryImpl(apiManager, cocktailDetailDao)
+    fun provideSaveCocktailsByApiUseCase(repository: CocktailManagerRepository): SaveCocktailUseCase {
+        return SaveCocktailUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun provideGetCocktailsByApiUseCase(homeRepository: HomeRepository): GetCocktailsByApiUseCase {
-        return GetCocktailsByApiUseCase(homeRepository)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSaveCocktailsByApiUseCase(homeRepository: HomeRepository): SaveCocktailUseCase {
-        return SaveCocktailUseCase(homeRepository)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetCocktailByNameUseCase(homeRepository: HomeRepository): GetCocktailByNameUseCase {
-        return GetCocktailByNameUseCase(homeRepository)
+    fun provideGetCocktailByNameUseCase(repository: CocktailManagerRepository): GetCocktailByNameUseCase {
+        return GetCocktailByNameUseCase(repository)
     }
 
 
     @Provides
     @Singleton
-    fun provideGetCocktailsByDBUseCase(libraryRepository: LibraryRepository): GetCocktailsByDBUseCase {
-        return GetCocktailsByDBUseCase(libraryRepository)
+    fun provideGetCocktailsByDBUseCase(repository: CocktailManagerRepository): GetCocktailsByDBUseCase {
+        return GetCocktailsByDBUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun provideDeleteCocktailUseCase(libraryRepository: LibraryRepository): DeleteCocktailUseCase {
-        return DeleteCocktailUseCase(libraryRepository)
+    fun provideDeleteCocktailUseCase(repository: CocktailManagerRepository): DeleteCocktailUseCase {
+        return DeleteCocktailUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun provideGetCocktailDetailUseCase(detailRepository: DetailRepository): GetCocktailDetailUseCase {
-        return GetCocktailDetailUseCase(detailRepository)
+    fun provideGetCocktailDetailUseCase(repository: CocktailManagerRepository): GetCocktailDetailUseCase {
+        return GetCocktailDetailUseCase(repository)
     }
 }
