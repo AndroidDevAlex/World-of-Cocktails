@@ -1,7 +1,8 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.presentation.detail
 
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.presentation.StateUI
+import com.example.worldofcocktails.util.Request
 
 fun <T> Request<T>.toState(): StateUI<T> {
     return when (this) {

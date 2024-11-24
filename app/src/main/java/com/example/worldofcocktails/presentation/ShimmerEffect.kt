@@ -1,4 +1,4 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.presentation
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.example.worldofcocktails.ui.theme.Gray
 import com.example.worldofcocktails.ui.theme.Orange
+import com.example.worldofcocktails.util.Dimens
 
 @Composable
 fun LoadingShimmerEffect() {

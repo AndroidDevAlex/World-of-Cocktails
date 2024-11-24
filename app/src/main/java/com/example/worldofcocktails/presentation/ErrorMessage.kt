@@ -1,4 +1,4 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.presentation
 
 import android.content.Context
 import androidx.compose.foundation.background
@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import com.example.worldofcocktails.R
 import com.example.worldofcocktails.ui.theme.Red
+import com.example.worldofcocktails.util.Dimens
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -65,7 +66,7 @@ fun ErrorMessage(
                 color = titleColor
             )
         }
-            Spacer(modifier = Modifier.height(Dimens. spacerHeight4))
+            Spacer(modifier = Modifier.height(Dimens.spacerHeight4))
 
         Text(
             text = message,

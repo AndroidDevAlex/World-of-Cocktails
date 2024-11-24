@@ -1,4 +1,4 @@
-package com.example.worldofcocktails
+package com.example.worldofcocktails.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -28,13 +28,15 @@ import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
+import com.example.worldofcocktails.R
 import com.example.worldofcocktails.ui.theme.DarkRed
 
 @Composable
 fun CocktailItem(
     item: CocktailEntity,
     bookmarkClick: (CocktailEntity) -> Unit,
-    onItemClick: (CocktailEntity) -> Unit
+    onItemClick: (CocktailEntity) -> Unit,
+    isLibraryScreen: Boolean
 ) {
 
     Column(
@@ -48,7 +50,7 @@ fun CocktailItem(
             Box(modifier = Modifier.weight(1f)) {
                 ImageAndContent(item)
             }
-            SaveItem(item = item, onBookmarkClick = bookmarkClick)
+            SaveItem(item = item, onBookmarkClick = bookmarkClick, isLibraryScreen = isLibraryScreen)
 
         }
     }
@@ -130,16 +132,17 @@ private fun Content(item: CocktailEntity) {
 @Composable
 private fun SaveItem(
     item: CocktailEntity,
-    onBookmarkClick: (CocktailEntity) -> Unit
+    onBookmarkClick: (CocktailEntity) -> Unit,
+    isLibraryScreen: Boolean
 ) {
 
-    val bookmarkIcon = if (item.isBookmarked) {
+    val bookmarkIcon = if (isLibraryScreen) {
         painterResource(id = R.drawable.delete)
     } else {
-        painterResource(id = R.drawable.bookmark )
+        painterResource(id = R.drawable.bookmark)
     }
 
-    val tint = Color.White
+    val tint = if (item.isBookmarked) Color.Black else Color.White
 
     Column(horizontalAlignment = Alignment.End) {
 

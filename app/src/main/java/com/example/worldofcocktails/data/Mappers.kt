@@ -1,4 +1,4 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.data
 
 import com.example.database.local.CocktailDB
 import com.example.database.local.CocktailDetailDB
@@ -25,7 +25,7 @@ fun Drink.mapToDetailEntity(): CocktailEntity {
     )
 }
 
-fun toIngredientAndMeasure(drink: Drink): List<DrinkRecipe> {
+private fun toIngredientAndMeasure(drink: Drink): List<DrinkRecipe> {
     val drinkRecipe = mutableListOf<DrinkRecipe>()
 
     val ingredientsList = listOf(
@@ -88,7 +88,7 @@ fun CocktailEntity.mapToDB(): CocktailDB {
         image = image,
         category = category,
         alcoholType = alcoholType,
-        isBookmarked = true,
+        isBookmarked = true
     )
 }
 

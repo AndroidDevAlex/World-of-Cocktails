@@ -1,4 +1,4 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.presentation
 
 enum class ErrorContext {
     ONE_COCKTAIL,

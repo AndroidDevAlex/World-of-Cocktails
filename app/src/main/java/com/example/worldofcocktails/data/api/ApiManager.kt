@@ -2,8 +2,8 @@ package com.example.worldofcocktails.data.api
 
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.util.Cocktail
-import com.example.worldofcocktails.util.mapToDetailEntity
-import com.example.worldofcocktails.util.mapToListEntity
+import com.example.worldofcocktails.data.mapToDetailEntity
+import com.example.worldofcocktails.data.mapToListEntity
 import okio.IOException
 import retrofit2.HttpException
 

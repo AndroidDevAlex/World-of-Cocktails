@@ -7,8 +7,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.worldofcocktails.presentation.CocktailListScreenUi
 import com.example.worldofcocktails.presentation.library.ScreenName.SCREEN_TITLE
-import com.example.worldofcocktails.util.ScreenType
-import com.example.worldofcocktails.util.SearchWidgetState
+import com.example.worldofcocktails.presentation.ScreenType
+import com.example.worldofcocktails.presentation.SearchWidgetState
 
 @Composable
 fun LibraryScreen(onLaunchDetailScreen: (String) -> Unit) {

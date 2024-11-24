@@ -35,10 +35,10 @@ import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.presentation.StateUI
 import com.example.worldofcocktails.ui.theme.Beige
 import com.example.worldofcocktails.util.Dimens
-import com.example.worldofcocktails.util.ErrorContext
-import com.example.worldofcocktails.util.ErrorMessage
-import com.example.worldofcocktails.util.SearchWidgetState
-import com.example.worldofcocktails.util.TopBarCustom
+import com.example.worldofcocktails.presentation.ErrorContext
+import com.example.worldofcocktails.presentation.ErrorMessage
+import com.example.worldofcocktails.presentation.SearchWidgetState
+import com.example.worldofcocktails.presentation.TopBarCustom
 
 @Composable
 fun DetailScreen(

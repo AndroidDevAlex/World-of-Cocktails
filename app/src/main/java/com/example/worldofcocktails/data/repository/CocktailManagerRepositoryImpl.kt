@@ -3,15 +3,16 @@ package com.example.worldofcocktails.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.map
 import com.example.database.local.CocktailLocalDataSource
 import com.example.worldofcocktails.data.api.ApiManager
 import com.example.worldofcocktails.data.api.CocktailPagingSource
 import com.example.worldofcocktails.data.api.Resource
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.util.Cocktail
-import com.example.worldofcocktails.util.mapFromDBToUiShort
-import com.example.worldofcocktails.util.mapToDB
-import com.example.worldofcocktails.util.toCocktailEntity
+import com.example.worldofcocktails.data.mapFromDBToUiShort
+import com.example.worldofcocktails.data.mapToDB
+import com.example.worldofcocktails.data.toCocktailEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -37,15 +38,21 @@ class CocktailManagerRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { CocktailPagingSource(apiManager) }
-        ).flow
+        ).flow.map { pagingData ->
+            pagingData.map {cocktail ->
+
+                val isSaved = localDataSource.isCocktailSaved(cocktail.idDrink)
+                cocktail.copy(isBookmarked = isSaved)
+            }
+        }
     }
 
     override suspend fun saveCocktail(cocktail: CocktailEntity) {
 
         val cocktailShortDB = cocktail.mapToDB()
-        val cocktailDetailDB1 = cocktail.detail?.mapToDB(cocktail.idDrink)
+        val cocktailDetailDB = cocktail.detail?.mapToDB(cocktail.idDrink)
 
-        localDataSource.saveCocktail(cocktailShortDB, cocktailDetailDB1)
+        localDataSource.saveCocktail(cocktailShortDB, cocktailDetailDB)
     }
 
     override suspend fun isCocktailSaved(id: String): Boolean {

@@ -15,16 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.LazyPagingItems
-import com.example.worldofcocktails.CocktailItem
 import com.example.worldofcocktails.R
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.util.Cocktail
 import com.example.worldofcocktails.util.Dimens
-import com.example.worldofcocktails.util.ErrorContext
-import com.example.worldofcocktails.util.LoadingStateView
-import com.example.worldofcocktails.util.ScreenType
-import com.example.worldofcocktails.util.SearchWidgetState
-import com.example.worldofcocktails.util.TopBarCustom
 
 @Composable
 fun CocktailListScreenUi(
@@ -93,7 +87,8 @@ fun CocktailListScreenUi(
                                         CocktailItem(
                                             item = item,
                                             bookmarkClick = bookMarkClick,
-                                            onItemClick = { navigateToDetail(it) }
+                                            onItemClick = { navigateToDetail(it) },
+                                            isLibraryScreen = true
                                         )
                                     }
                                 }
@@ -112,7 +107,8 @@ fun CocktailListScreenUi(
                                             CocktailItem(
                                                 item = item,
                                                 bookmarkClick = bookMarkClick,
-                                                onItemClick = { navigateToDetail(it) }
+                                                onItemClick = { navigateToDetail(it) },
+                                                isLibraryScreen = false
                                             )
                                         }
                                     }
@@ -173,7 +169,8 @@ fun CocktailListScreenUi(
                                                     bookmarkClick = bookMarkClick,
                                                     onItemClick = { cocktail ->
                                                         navigateToDetail(cocktail)
-                                                    }
+                                                    },
+                                                    isLibraryScreen = false
                                                 )
                                             }
                                         }

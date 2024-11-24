@@ -1,4 +1,4 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.worldofcocktails.ui.theme.DarkGray
 import com.example.worldofcocktails.ui.theme.Orange
 import com.example.worldofcocktails.ui.theme.White
+import com.example.worldofcocktails.util.Dimens
 
 @Composable
 fun TopBarCustom(

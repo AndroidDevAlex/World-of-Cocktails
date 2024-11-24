@@ -1,4 +1,4 @@
-package com.example.worldofcocktails.util
+package com.example.worldofcocktails.presentation
 
 import android.content.Context
 import androidx.compose.foundation.layout.Box
@@ -22,6 +22,7 @@ import com.example.worldofcocktails.ui.theme.DarkRed
 import com.example.worldofcocktails.ui.theme.LightGray
 import com.example.worldofcocktails.ui.theme.Orange
 import com.example.worldofcocktails.ui.theme.Red
+import com.example.worldofcocktails.util.Dimens
 
 @Composable
 fun LoadingStateView(

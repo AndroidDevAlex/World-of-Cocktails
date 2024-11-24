@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.worldofcocktails.domain.useCases.detailCase.GetCocktailDetailUseCase
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.presentation.StateUI
-import com.example.worldofcocktails.util.toState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow

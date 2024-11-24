@@ -9,14 +9,11 @@ import com.example.worldofcocktails.domain.useCases.homeCase.GetCocktailsByApiUs
 import com.example.worldofcocktails.domain.useCases.homeCase.SaveCocktailUseCase
 import com.example.worldofcocktails.entityUi.CocktailEntity
 import com.example.worldofcocktails.util.Cocktail
-import com.example.worldofcocktails.util.SearchWidgetState
+import com.example.worldofcocktails.presentation.SearchWidgetState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
@@ -38,24 +35,17 @@ class HomeViewModel @Inject constructor(
     private val _pagedCocktails = MutableStateFlow<PagingData<CocktailEntity>>(PagingData.empty())
     val pagedCocktails: StateFlow<PagingData<CocktailEntity>> = _pagedCocktails
 
-    private val _bookmarkEvent = MutableSharedFlow<Boolean>(
-        replay = 0,
-        extraBufferCapacity = 1
-    )
-    val bookmarkEvent: SharedFlow<Boolean> = _bookmarkEvent.asSharedFlow()
-
     private val _searchWidgetState = MutableStateFlow(SearchWidgetState.CLOSED)
     val searchWidgetState: StateFlow<SearchWidgetState> = _searchWidgetState
 
-    private val _searchTextState  = MutableStateFlow("")
+    private val _searchTextState = MutableStateFlow("")
     val searchText: StateFlow<String> = _searchTextState
 
-
-    fun updateSearchWidgetState(newValue: SearchWidgetState){
+    fun updateSearchWidgetState(newValue: SearchWidgetState) {
         _searchWidgetState.value = newValue
     }
 
-    fun updateSearchStateTex(newValue: String){
+    fun updateSearchStateTex(newValue: String) {
         _searchTextState.value = newValue
     }
 
@@ -76,8 +66,20 @@ class HomeViewModel @Inject constructor(
     fun searchCocktailByName(name: String) {
         viewModelScope.launch(ioDispatcher) {
             _isLoading.value = true
+
             val result = getCocktailByNameUseCase.searchCocktailByName(name)
-            _searchSpecificCocktail.value = result
+
+            if (result is Cocktail.Success) {
+                val cocktail = result.cocktail
+
+                val isSaved = saveCocktailUseCase.isCocktailSaved(cocktail.idDrink)
+
+                val updatedCocktail = cocktail.copy(isBookmarked = isSaved)
+
+                _searchSpecificCocktail.value = Cocktail.Success(updatedCocktail)
+            } else {
+                _searchSpecificCocktail.value = result
+            }
             _isLoading.value = false
         }
     }
@@ -89,12 +91,13 @@ class HomeViewModel @Inject constructor(
 
     fun pressBookmark(cocktail: CocktailEntity) {
         viewModelScope.launch(ioDispatcher) {
-            val isAlreadySaved = saveCocktailUseCase.isCocktailSaved(cocktail.idDrink)
-            if (isAlreadySaved) {
-                _bookmarkEvent.emit(true)
-            } else {
-                saveCocktailUseCase.saveCocktail(cocktail)
-                _bookmarkEvent.emit(false)
+            saveCocktailUseCase.toggleBookmark(cocktail)
+            fetchPagedCocktails()
+
+            val currentCocktail = _searchSpecificCocktail.value
+            if (currentCocktail is Cocktail.Success && currentCocktail.cocktail.idDrink == cocktail.idDrink) {
+                _searchSpecificCocktail.value =
+                    Cocktail.Success(cocktail.copy(isBookmarked = !cocktail.isBookmarked))
             }
         }
     }
