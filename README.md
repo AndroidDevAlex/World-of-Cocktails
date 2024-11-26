@@ -18,3 +18,21 @@ It is possible to save/remove a cocktail and view detailed information about it.
 - **Pagination**: [Jetpack Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
 
 
+## Screenshots
+
+### Loading
+
+<p float="left">
+  <img alt="Splash" src="screenshots/1.png" width="250">
+  <img alt="Loading" src="screenshots/2.png" width="250">
+</p>
+
+                                             |
+### Home screen
+
+
+|:-----------------------------------------:|:-------------------------------------------------:|:----------------------------------------------:|
+| ![Screenshot 3](screenshots/3.png)  | ![Screenshot 4](screenshots/4.png)         | ![Screenshot 4](screenshots/5.png)          |                                  
+| ![Screenshot 4](screenshots/6.png)  | ![Screenshot 5](screenshots/7.png) | ![Screenshot 6](screenshots/8.png)      |
+| ![Screenshot 7](screenshots/9.png)    | ![Screenshot 8](screenshots/10.png)      |                                                | 
+| ![Screenshot 9](screenshots/11.png)      | ![Screenshot 10](screenshots/12.png)          | ![Screenshot 11](screenshots/13.png)|      
