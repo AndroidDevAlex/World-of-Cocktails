@@ -26,7 +26,7 @@ It is possible to save/remove a cocktail and view detailed information about it.
   <img alt="Splash" src="screenshots/1.png" width="250">
   <img alt="Loading" src="screenshots/2.png" width="250">
 </p>
-                                            |
+                                          
 ### Home screen
 
 <p float="left">
