@@ -38,6 +38,9 @@ It is possible to save/remove a cocktail and view detailed information about it.
 <p float="left">
   <img alt="Search" src="screenshots/7.png" width="250">
   <img alt="Success" src="screenshots/8.png" width="250">
+</p>
+
+<p float="left">
   <img alt="NoInternetByOne" src="screenshots/9.png" width="250">
   <img alt="NotFound" src="screenshots/10.png" width="250">
 </p>
