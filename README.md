@@ -45,3 +45,15 @@ It is possible to save/remove a cocktail and view detailed information about it.
   <img alt="NotFound" src="screenshots/10.png" width="250">
 </p>
 
+### Library screen
+
+<p float="left">
+  <img alt="Empty" src="screenshots/11.png" width="250">
+  <img alt="NotEmpty" src="screenshots/12.png" width="250">
+</p>
+
+### Detail screen
+
+<p float="left">
+  <img alt="Empty" src="screenshots/13.png" width="250">
+</p>
