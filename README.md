@@ -11,8 +11,10 @@ It is possible to save/remove a cocktail and view detailed information about it.
 - **Asynchronous Programming**: [Kotlin Flow](https://kotlinlang.org/docs/flow.html), [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
 - **Database**: [SQLite](https://www.sqlite.org/index.html) (with [Room](https://developer.android.com/training/data-storage/room))
 - **Networking**: [Retrofit2](https://square.github.io/retrofit/)
-- **Navigation**: Navigation component
-- **View Layer**: Jetpack Compose 
-- **Image loading**: Coil
-- **Api responce**: JSON
-- **Pagination**: Jetpack Paging 3 
+- **Navigation**: [Navigation component](https://developer.android.com/develop/ui/compose/navigation)
+- **View Layer**: [Jetpack Compose](https://developer.android.com/compose)
+- **Image loading**: [Coil](https://coil-kt.github.io/coil/compose/)
+- **Api responce**: [JSON](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON)
+- **Pagination**: [Jetpack Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
+
+
