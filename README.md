@@ -26,13 +26,19 @@ It is possible to save/remove a cocktail and view detailed information about it.
   <img alt="Splash" src="screenshots/1.png" width="250">
   <img alt="Loading" src="screenshots/2.png" width="250">
 </p>
-
-                                             |
+                                            |
 ### Home screen
 
+<p float="left">
+  <img alt="SuccessList" src="screenshots/3.png" width="250">
+  <img alt="NoInternet" src="screenshots/4.png" width="250">
+  <img alt="DataLoading" src="screenshots/6.png" width="250">
+</p>
 
-|:-----------------------------------------:|:-------------------------------------------------:|:----------------------------------------------:|
-| ![Screenshot 3](screenshots/3.png)  | ![Screenshot 4](screenshots/4.png)         | ![Screenshot 4](screenshots/5.png)          |                                  
-| ![Screenshot 4](screenshots/6.png)  | ![Screenshot 5](screenshots/7.png) | ![Screenshot 6](screenshots/8.png)      |
-| ![Screenshot 7](screenshots/9.png)    | ![Screenshot 8](screenshots/10.png)      |                                                | 
-| ![Screenshot 9](screenshots/11.png)      | ![Screenshot 10](screenshots/12.png)          | ![Screenshot 11](screenshots/13.png)|      
+<p float="left">
+  <img alt="Search" src="screenshots/7.png" width="250">
+  <img alt="Success" src="screenshots/8.png" width="250">
+  <img alt="NoInternetByOne" src="screenshots/9.png" width="250">
+  <img alt="NotFound" src="screenshots/10.png" width="250">
+</p>
+
