@@ -3,7 +3,6 @@ package com.example.worldofcocktails.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.example.database.local.CocktailLocalDataSource
 import com.example.worldofcocktails.data.api.ApiManager
 import com.example.worldofcocktails.data.api.CocktailPagingSource
@@ -38,13 +37,7 @@ class CocktailManagerRepositoryImpl @Inject constructor(
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { CocktailPagingSource(apiManager) }
-        ).flow.map { pagingData ->
-            pagingData.map {cocktail ->
-
-                val isSaved = localDataSource.isCocktailSaved(cocktail.idDrink)
-                cocktail.copy(isBookmarked = isSaved)
-            }
-        }
+        ).flow
     }
 
     override suspend fun saveCocktail(cocktail: CocktailEntity) {

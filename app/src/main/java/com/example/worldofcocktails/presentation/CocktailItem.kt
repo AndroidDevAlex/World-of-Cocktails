@@ -35,8 +35,7 @@ import com.example.worldofcocktails.ui.theme.DarkRed
 fun CocktailItem(
     item: CocktailEntity,
     bookmarkClick: (CocktailEntity) -> Unit,
-    onItemClick: (CocktailEntity) -> Unit,
-    isLibraryScreen: Boolean
+    onItemClick: (CocktailEntity) -> Unit
 ) {
 
     Column(
@@ -50,7 +49,7 @@ fun CocktailItem(
             Box(modifier = Modifier.weight(1f)) {
                 ImageAndContent(item)
             }
-            SaveItem(item = item, onBookmarkClick = bookmarkClick, isLibraryScreen = isLibraryScreen)
+            SaveItem(item = item, onBookmarkClick = bookmarkClick)
 
         }
     }
@@ -132,17 +131,16 @@ private fun Content(item: CocktailEntity) {
 @Composable
 private fun SaveItem(
     item: CocktailEntity,
-    onBookmarkClick: (CocktailEntity) -> Unit,
-    isLibraryScreen: Boolean
+    onBookmarkClick: (CocktailEntity) -> Unit
 ) {
 
-    val bookmarkIcon = if (isLibraryScreen) {
+    val bookmarkIcon = if (item.isBookmarked) {
         painterResource(id = R.drawable.delete)
     } else {
-        painterResource(id = R.drawable.bookmark)
+        painterResource(id = R.drawable.bookmark )
     }
 
-    val tint = if (item.isBookmarked) Color.Black else Color.White
+    val tint = Color.White
 
     Column(horizontalAlignment = Alignment.End) {
 

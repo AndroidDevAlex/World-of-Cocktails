@@ -87,8 +87,7 @@ fun CocktailListScreenUi(
                                         CocktailItem(
                                             item = item,
                                             bookmarkClick = bookMarkClick,
-                                            onItemClick = { navigateToDetail(it) },
-                                            isLibraryScreen = true
+                                            onItemClick = { navigateToDetail(it) }
                                         )
                                     }
                                 }
@@ -107,8 +106,7 @@ fun CocktailListScreenUi(
                                             CocktailItem(
                                                 item = item,
                                                 bookmarkClick = bookMarkClick,
-                                                onItemClick = { navigateToDetail(it) },
-                                                isLibraryScreen = false
+                                                onItemClick = { navigateToDetail(it) }
                                             )
                                         }
                                     }
@@ -169,8 +167,7 @@ fun CocktailListScreenUi(
                                                     bookmarkClick = bookMarkClick,
                                                     onItemClick = { cocktail ->
                                                         navigateToDetail(cocktail)
-                                                    },
-                                                    isLibraryScreen = false
+                                                    }
                                                 )
                                             }
                                         }

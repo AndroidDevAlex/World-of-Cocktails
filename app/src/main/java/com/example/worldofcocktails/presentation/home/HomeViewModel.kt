@@ -12,8 +12,11 @@ import com.example.worldofcocktails.util.Cocktail
 import com.example.worldofcocktails.presentation.SearchWidgetState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Named
@@ -31,6 +34,12 @@ class HomeViewModel @Inject constructor(
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
+
+    private val _bookmarkEvent = MutableSharedFlow<Boolean>(
+        replay = 0,
+        extraBufferCapacity = 1
+    )
+    val bookmarkEvent: SharedFlow<Boolean> = _bookmarkEvent.asSharedFlow()
 
     private val _pagedCocktails = MutableStateFlow<PagingData<CocktailEntity>>(PagingData.empty())
     val pagedCocktails: StateFlow<PagingData<CocktailEntity>> = _pagedCocktails
@@ -66,20 +75,8 @@ class HomeViewModel @Inject constructor(
     fun searchCocktailByName(name: String) {
         viewModelScope.launch(ioDispatcher) {
             _isLoading.value = true
-
             val result = getCocktailByNameUseCase.searchCocktailByName(name)
-
-            if (result is Cocktail.Success) {
-                val cocktail = result.cocktail
-
-                val isSaved = saveCocktailUseCase.isCocktailSaved(cocktail.idDrink)
-
-                val updatedCocktail = cocktail.copy(isBookmarked = isSaved)
-
-                _searchSpecificCocktail.value = Cocktail.Success(updatedCocktail)
-            } else {
-                _searchSpecificCocktail.value = result
-            }
+            _searchSpecificCocktail.value = result
             _isLoading.value = false
         }
     }
@@ -91,13 +88,12 @@ class HomeViewModel @Inject constructor(
 
     fun pressBookmark(cocktail: CocktailEntity) {
         viewModelScope.launch(ioDispatcher) {
-            saveCocktailUseCase.toggleBookmark(cocktail)
-            fetchPagedCocktails()
-
-            val currentCocktail = _searchSpecificCocktail.value
-            if (currentCocktail is Cocktail.Success && currentCocktail.cocktail.idDrink == cocktail.idDrink) {
-                _searchSpecificCocktail.value =
-                    Cocktail.Success(cocktail.copy(isBookmarked = !cocktail.isBookmarked))
+            val isAlreadySaved = saveCocktailUseCase.isCocktailSaved(cocktail.idDrink)
+            if (isAlreadySaved) {
+                _bookmarkEvent.emit(true)
+            } else {
+                saveCocktailUseCase.saveCocktail(cocktail)
+                _bookmarkEvent.emit(false)
             }
         }
     }
