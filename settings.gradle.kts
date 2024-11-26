@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "World of Cocktails"
 include(":app")
+include(":database")
